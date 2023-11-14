@@ -48,7 +48,6 @@ fun DetailsPatientAdminHomeScreen() {
         },
     ) { innerPadding ->
         LazyColumn(
-            verticalArrangement = Arrangement.SpaceEvenly,
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .padding(innerPadding)
