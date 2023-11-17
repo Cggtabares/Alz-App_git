@@ -13,6 +13,9 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
@@ -25,6 +28,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -39,6 +43,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,7 +53,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun IngresarScreen() {
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Ingresar") }) },
+        topBar = { MyTopAppBar() },
     ) { innerPadding ->
         Box(
             modifier = Modifier
@@ -62,6 +67,41 @@ fun IngresarScreen() {
         }
 
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyTopAppBar() {
+    TopAppBar(
+        title = {
+            Text(
+                text = "Ingresar",
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(16.dp)
+            )
+        },
+        //colors = TopAppBarDefaults.smallTopAppBarColors(
+        //titleContentColor = Color.White,
+        //navigationIconContentColor = Color.White,
+        //actionIconContentColor = Color.White//),
+        navigationIcon = {
+            IconButton(onClick = {}) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Back",
+                    Modifier.size(150.dp)
+                )
+            }
+        }, actions = {
+            IconButton(onClick = {}) {
+                Icon(
+                    imageVector = Icons.Filled.AccountCircle,
+                    contentDescription = "Account",
+                    Modifier.size(150.dp)
+                )
+            }
+        }
+    )
 }
 
 
