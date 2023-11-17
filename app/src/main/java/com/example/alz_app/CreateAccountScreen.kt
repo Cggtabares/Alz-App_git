@@ -31,12 +31,14 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -266,7 +268,13 @@ fun CreateAccountButton(isCreateEnable: Boolean) {
     Button(
         shape = RoundedCornerShape(10.dp),
         onClick = { /* Submit form */ },
-        content = { Text("Crear cuenta") },
+        content = {
+            Text(
+                "Crear cuenta",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Bold,
+            )
+        },
         enabled = isCreateEnable,
         modifier = Modifier
             .padding(top = 32.dp)
