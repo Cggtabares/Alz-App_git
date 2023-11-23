@@ -1,12 +1,9 @@
-package com.example.alz_app
+package com.example.alz_app.LoginScreens
 
-import android.provider.ContactsContract.CommonDataKinds.Phone
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -48,9 +45,11 @@ fun CreateAccountScreen() {
     var lastname by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
-    var repassword by rememberSaveable { mutableStateOf("") }
     var phone by rememberSaveable { mutableStateOf("") }
+    var type by rememberSaveable { mutableStateOf("") }
+    var location by rememberSaveable { mutableStateOf("") }
     var isCreateEnable by rememberSaveable { mutableStateOf(false) }
+
     Scaffold(
         topBar = { MyTopAppBarCreateAccount() },
     ) { innerPadding ->
@@ -77,10 +76,10 @@ fun CreateAccountScreen() {
                 FieldCreatePassword(password = password, onTextChanged = { password = it })
             }
             item {
-                FieldCreateRePassword(repassword = repassword, onTextChanged = { repassword = it })
+                FieldCreatePhone(phone = phone, onTextChanged = { phone = it })
             }
             item {
-                FieldCreatePhone(phone = phone, onTextChanged = { phone = it })
+                FieldCreateType(type = type, onTextChanged = { type = it })
             }
             item {
                 OutlinedTextField(
@@ -103,7 +102,7 @@ fun MyTopAppBarCreateAccount() {
         title = {
             Text(
                 text = "Crear Cuenta",
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Justify,
                 modifier = Modifier.padding(16.dp)
             )
         },
@@ -181,11 +180,13 @@ fun FieldCreateEmail(email: String, onTextChanged: (String) -> Unit) {
 @Composable
 fun FieldCreatePassword(password: String, onTextChanged: (String) -> Unit) {
     var passwordVisibility by remember { mutableStateOf(false) }
+    val validator = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")
     OutlinedTextField(
         value = password,
         onValueChange = { onTextChanged(it) },
         modifier = Modifier.fillMaxWidth(),
         label = { Text("Contraseña") },
+        //validator = { if (it.matches(validator)) null else "Contraseña no valida" }, //agregar animacion para que el usuariosepa que la contrasena es incorrecta
         maxLines = 1,
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -201,50 +202,8 @@ fun FieldCreatePassword(password: String, onTextChanged: (String) -> Unit) {
             }
         },
         visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
+
     )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun FieldCreateRePassword(repassword: String, onTextChanged: (String) -> Unit) {
-    var passwordVisibility by remember { mutableStateOf(false) }
-    OutlinedTextField(
-        value = repassword,
-        onValueChange = { onTextChanged(it) },
-        modifier = Modifier.fillMaxWidth(),
-        label = { Text("Repetir Contraseña") },
-        maxLines = 1,
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-        trailingIcon = {
-            val imagen = if (passwordVisibility) {
-                Icons.Filled.VisibilityOff
-            } else {
-                Icons.Filled.Visibility
-            }
-            IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
-                Icon(imageVector = imagen, contentDescription = "Password Visibility")
-
-            }
-        },
-        visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
-    )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun c(email: String, onTextChanged: (String) -> Unit) {
-    OutlinedTextField(
-        value = email,
-        onValueChange = { onTextChanged(it) },
-        modifier = Modifier.fillMaxWidth(),
-        label = { Text("Correo Electronico") },
-        maxLines = 1,
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-
-
-        )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -254,7 +213,22 @@ fun FieldCreatePhone(phone: String, onTextChanged: (String) -> Unit) {
         value = phone,
         onValueChange = { onTextChanged(it) },
         modifier = Modifier.fillMaxWidth(),
-        label = { Text("Nombre") },
+        label = { Text("Telefono") },
+        maxLines = 1,
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+
+        )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun FieldCreateType(type: String, onTextChanged: (String) -> Unit) {
+    OutlinedTextField(
+        value = type,
+        onValueChange = { onTextChanged(it) },
+        modifier = Modifier.fillMaxWidth(),
+        label = { Text("Tipo de usuario") },
         maxLines = 1,
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),

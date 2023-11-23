@@ -1,4 +1,4 @@
-package com.example.alz_app
+package com.example.alz_app.LoginScreens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.alz_app.R
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)

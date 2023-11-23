@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "837864253381",
+    "project_id": "alz-app-ba116",
+    "storage_bucket": "alz-app-ba116.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837864253381:android:71b50d2ea22240d75c4dac",
+        "android_client_info": {
+          "package_name": "com.example.alz_app.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAbNctVmn-hC8SG1SQ_vEZLfXj77LWQSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package com.example.alz_app
+package com.example.alz_app.AdminScreens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
