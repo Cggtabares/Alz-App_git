@@ -1,7 +1,10 @@
 package com.example.alz_app.LoginScreens
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,12 +16,16 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -28,6 +35,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -36,6 +44,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.MapProperties
+import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerState
+import com.google.maps.android.compose.rememberCameraPositionState
+import com.google.type.LatLng
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -79,14 +94,10 @@ fun CreateAccountScreen() {
                 FieldCreatePhone(phone = phone, onTextChanged = { phone = it })
             }
             item {
-                FieldCreateType(type = type, onTextChanged = { type = it })
+                FieldCreateTypeDropdownMenu(type = type)
             }
             item {
-                OutlinedTextField(
-                    value = "",
-                    onValueChange = { },
-                    label = { Text("Dirección - tomar ubicacion inicial") },
-                )
+                FieldCreateGoogleMap(location = location)
             }
             item {
                 CreateAccountButton(isCreateEnable)
@@ -94,6 +105,8 @@ fun CreateAccountScreen() {
         }
     }
 }
+
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -223,17 +236,70 @@ fun FieldCreatePhone(phone: String, onTextChanged: (String) -> Unit) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FieldCreateType(type: String, onTextChanged: (String) -> Unit) {
-    OutlinedTextField(
-        value = type,
-        onValueChange = { onTextChanged(it) },
-        modifier = Modifier.fillMaxWidth(),
-        label = { Text("Tipo de usuario") },
-        maxLines = 1,
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+fun FieldCreateTypeDropdownMenu(type: String) {
+    // val context = LocalContext.current
+    val typeUser = arrayOf("Pacientes", "Cuidadores")
+    var expanded by remember { mutableStateOf(false) }
+    var selectedText by remember { mutableStateOf(typeUser[0]) }
 
-        )
+    Box(
+        modifier = Modifier
+            .fillMaxWidth().padding(top = 8.dp)
+
+    ) {
+        ExposedDropdownMenuBox(
+            expanded = expanded,
+            onExpandedChange = {
+                expanded = !expanded
+            },
+            modifier = Modifier.fillMaxWidth()
+
+        ) {
+            TextField(
+                value = selectedText,
+                onValueChange = {},
+                readOnly = true,
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                modifier = Modifier.menuAnchor().fillMaxWidth()
+            )
+
+            ExposedDropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                typeUser.forEach { item ->
+                    DropdownMenuItem(
+                        text = { Text(text = item) },
+                        onClick = {
+                            selectedText = item
+                            expanded = false
+                            // Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
+                        }
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun FieldCreateGoogleMap(location: String) {
+    val location = com.google.android.gms.maps.model.LatLng(1.35, 103.87)
+    val cameraPositionState = rememberCameraPositionState {
+        position = CameraPosition.fromLatLngZoom(location, 10f)
+    }
+    Box(modifier = Modifier.fillMaxWidth().height(300.dp)){
+        GoogleMap(
+            modifier = Modifier,
+            cameraPositionState = cameraPositionState,
+            //properties = MapProperties(isMyLocationEnabled = true)
+        ){
+            Marker(
+                state = MarkerState(position = location),
+                title = "Singapore")
+        }
+    }
 }
 
 
@@ -255,6 +321,8 @@ fun CreateAccountButton(isCreateEnable: Boolean) {
             .fillMaxWidth(),
     )
 }
+
+
 
 @Preview(showBackground = true)
 @Composable

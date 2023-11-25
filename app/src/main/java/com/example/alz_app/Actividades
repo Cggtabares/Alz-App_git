@@ -1,0 +1,15 @@
+
+-Crear usuario screen
+    -tomar la ubicacion del usuario
+        -Boton para solicitar ubicacion luego
+        -Dialogo para permitir los permisos para la ubicacion, Si no se permite la ubicacion, se muestra un mensaje de error
+        -Si se permite la ubicacion, se muestra un toast de exito y se guarda y muestra la ubicacion en el mapa como un marcador
+    -Campo password
+        -validar password
+    -Boton para crear usuario
+        -Si el usuario se creo exitosamente, se muestra un toast de exito y se redirige al usuario a la pantalla de login
+        -Enviar las variables al viewModel para creae el usuario en firebase y firestore
+        -Si el usuario no se creo exitosamente, se muestra un toast de error
+    -Conectarme con firebase
+        -Crear la funcion para crear el usuario en firebase y firestore
+        -Crear la data class para el formulario de los usuarios

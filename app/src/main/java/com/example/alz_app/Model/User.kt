@@ -9,7 +9,9 @@ data class User(
     val email: String,
     val phone: Int,
     val type: String,
-    val location: Location
+    val location: Location,
+    val cuidadorId: String,
+
 ){
 
 }
