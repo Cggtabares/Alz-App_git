@@ -7,11 +7,32 @@ data class User(
     val name: String,
     val lastName: String,
     val email: String,
-    val phone: Int,
+    val phone: String,
     val type: String,
-    val location: Location,
-    val cuidadorId: String,
+    val firstlocation: Location?,
+    val cuidadorId: String?,
+    val lastLocation: Location?
 
 ){
+
+    fun toMap(): MutableMap<String, Any?>{
+        return mutableMapOf(
+            "uid" to this.uid,
+            "name" to this.name,
+            "lastName" to this.lastName,
+            "email" to this.email,
+            "phone" to this.phone,
+            "type" to this.type,
+            "location" to this.firstlocation,
+            "lastLocation" to this.lastLocation,
+            "cuidadorId" to this.cuidadorId
+        )
+
+
+    }
+
+
+
+
 
 }
