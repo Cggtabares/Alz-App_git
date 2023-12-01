@@ -109,7 +109,7 @@ fun CreateAccountScreen(MainViewModel: MainViewModel ) {
                 FieldCreateTypeDropdownMenu(type = type, onUpdateType = { newType -> MainViewModel.onUpdateType(newType) })
             }
             item{
-                //AcquireLocationButton()
+                AcquireLocationButton()
             }
             item {
                 FieldCreateGoogleMap(location = location)
@@ -309,10 +309,10 @@ fun FieldCreateTypeDropdownMenu(type: String, onUpdateType: (String) -> Unit){
 }
 
 @Composable
-fun AcquireLocationButton(onClic: () -> Unit){
+fun AcquireLocationButton(){ //, onClic: () -> Unit
     Button(
         shape = RoundedCornerShape(10.dp),
-        onClick = onClic,
+        onClick = {},  //onClic
         content = {
             Text(
                 "Obtener ubicacion",
