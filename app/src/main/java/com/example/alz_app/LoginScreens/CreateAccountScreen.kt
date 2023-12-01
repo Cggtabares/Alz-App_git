@@ -1,8 +1,10 @@
 package com.example.alz_app.LoginScreens
 
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -36,6 +38,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -44,6 +48,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.alz_app.R
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
@@ -67,10 +72,7 @@ fun CreateAccountScreen(MainViewModel: MainViewModel ) {
     val isCreateEnable:Boolean by MainViewModel.isCreateEnable.observeAsState(initial = false)
 
 
-
-
-
-    Scaffold(
+   Scaffold(
         topBar = { MyTopAppBarCreateAccount() },
     ) { innerPadding ->
         LazyColumn(
@@ -375,7 +377,7 @@ fun CreateAccountButton(isCreateEnable: Boolean,
 @Preview(showBackground = true)
 @Composable
 fun CreateAccountScreenPreview() {
-    //CreateAccountScreen()
+    CreateAccountScreen(MainViewModel())
 }
 
 

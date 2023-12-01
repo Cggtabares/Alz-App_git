@@ -89,15 +89,7 @@ fun MyTopAppBar() {
                     Modifier.size(150.dp)
                 )
             }
-        }, actions = {
-            IconButton(onClick = {}) {
-                Icon(
-                    imageVector = Icons.Filled.AccountCircle,
-                    contentDescription = "Account",
-                    Modifier.size(150.dp)
-                )
-            }
-        }
+        },
     )
 }
 
