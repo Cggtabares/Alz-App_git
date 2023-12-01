@@ -1,7 +1,11 @@
 package com.example.alz_app.Navigation
 
 enum class AppScreens {
+    SelectionScreen,
     LoginScreen,
-    CreateUserScreen,
-    HomeScreen
+    CreateAccountScreen,
+    ProfileCareGiversScreen,
+    ProfilePatientsScreen,
+    NotificationsTCareGiversProfileScreen,
+
 }
