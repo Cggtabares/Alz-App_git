@@ -81,7 +81,9 @@ fun MyTopAppBar() {
         //navigationIconContentColor = Color.White,
         //actionIconContentColor = Color.White//),
         navigationIcon = {
-            IconButton(onClick = {}) {
+            IconButton(onClick = {
+                //navController.navigate(AppScreens.SelectionScreen.name
+            }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "Back",
@@ -117,7 +119,10 @@ fun Body(modifier: Modifier) {
 fun LoginButton(loginEnable: Boolean) {
     Button(
         shape = RoundedCornerShape(10.dp),
-        onClick = { /* Submit form */ },
+        onClick = {
+            //viewModel.signIn().also {
+            //navController.navigate(AppScreens.SelectionScreen.name)}
+                  },
         enabled = loginEnable,
         modifier = Modifier
             .padding(top = 32.dp)

@@ -165,7 +165,10 @@ fun TopAppBa() {
         //navigationIconContentColor = Color.White,
         //actionIconContentColor = Color.White//),
         navigationIcon = {
-            IconButton(onClick = {}) {
+            IconButton(onClick = {//viewModel.signOutAccount().also {
+                                  //navController.navigate(AppScreens.LoginScreen.name)
+            })
+            {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "Back",

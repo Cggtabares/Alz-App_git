@@ -94,7 +94,9 @@ fun MyTopAppBarProfile() {
         //navigationIconContentColor = Color.White,
         //actionIconContentColor = Color.White//),
         navigationIcon = {
-            IconButton(onClick = {}) {
+            IconButton(onClick = {
+                //navController.navigate(AppScreens.PatientListScreen.name
+            }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "Back",
@@ -169,7 +171,10 @@ fun SignOutButton()
 {
     Button(
         shape = RoundedCornerShape(10.dp),
-        onClick = { }, //funcion para cerrar sesion y volver a la pantalla de login con navigation
+        onClick = {
+            //viewModel.signOutAccount().also {
+            //navController.navigate(AppScreens.SelectionScreen.name)}
+        }, //funcion para cerrar sesion y volver a la pantalla de login con navigation
         content = {
             Text(
                 "Cerrar Sesión",

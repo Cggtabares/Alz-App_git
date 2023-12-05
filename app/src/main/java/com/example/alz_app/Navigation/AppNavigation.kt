@@ -13,14 +13,52 @@ fun AppNavigation(){
     val navController = rememberNavController()
     NavHost(navController = navController,
         startDestination = AppScreens.SelectionScreen.name
-    ){
-        composable(AppScreens.SelectionScreen.name){
+    ) {
+        composable(AppScreens.SelectionScreen.name) {
             //LoginScreen(navController = navController)
         }
-        composable(AppScreens.LoginScreen.name){
+        composable(AppScreens.LoginScreen.name) {
             //IngresarScreen(navController = navController)
+        }
+        composable(AppScreens.CreateAccountScreen.name) {
+            //CreateAccountScreen(navController = navController)
+        }
+        //if (user.type == "Paciente") {
+        composable(AppScreens.ProfilePatientsScreen.name) {
+            //ProfilePatientsScreen(navController = navController)
+        }
+        //} else{
+                composable(AppScreens.PatientListScreen.name) {
+                    //PatientListScreen(navController = navController)
+                }
+
+        //}
+        composable(AppScreens.ProfileCareGiversScreen.name) {
+            //ProfileCareGiversScreen(navController = navController)
+        }
+        composable(AppScreens.NotificationsCareGiversProfileScreen.name) {
+            //NotificationsTCareGiversProfileScreen(navController = navController)
+        }
+        composable(AppScreens.ProfileCareGiversSelectedScreen.name) {
+            //ProfileCareGiversSelectedScreen(navController = navController)
         }
 
 
     }
 }
+
+
+
+
+
+/*
+
+
+
+if (user.type == "Paciente"){
+    PacientProfileScreen()
+    }
+    else{
+        PatientList ()
+    }
+ */

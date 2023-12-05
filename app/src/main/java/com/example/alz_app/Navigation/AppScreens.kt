@@ -4,8 +4,11 @@ enum class AppScreens {
     SelectionScreen,
     LoginScreen,
     CreateAccountScreen,
-    ProfileCareGiversScreen,
     ProfilePatientsScreen,
-    NotificationsTCareGiversProfileScreen,
+    PatientListScreen,
+    ProfileCareGiversScreen,
+    NotificationsCareGiversProfileScreen,
+    ProfileCareGiversSelectedScreen,
+
 
 }

@@ -86,7 +86,9 @@ fun MyTopAppBarProfile() {
         //navigationIconContentColor = Color.White,
         //actionIconContentColor = Color.White//),
         navigationIcon = {
-            IconButton(onClick = {}) {
+            IconButton(onClick = {
+                //navController.navigate(AppScreens.PatientListScreen.name)
+            }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "Back",

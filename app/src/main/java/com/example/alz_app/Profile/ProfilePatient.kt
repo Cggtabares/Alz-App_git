@@ -2,6 +2,7 @@ package com.example.alz_app.LoginScreens.ProfilePatient
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -88,15 +89,19 @@ fun MyTopAppBarProfile() {
         //titleContentColor = Color.White,
         //navigationIconContentColor = Color.White,
         //actionIconContentColor = Color.White//),
+
         navigationIcon = {
-            IconButton(onClick = {}) {
+            IconButton(onClick = {
+                //viewModel.signOutAccount().also {
+                //navController.navigate(AppScreens.SelectionScreen.name)}
+            }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "Back",
                     Modifier.size(150.dp)
                 )
             }
-        },
+        }
     )
 }
 
@@ -171,7 +176,10 @@ fun SignOutButton()
 {
     Button(
         shape = RoundedCornerShape(10.dp),
-        onClick = { }, //funcion para cerrar sesion y volver a la pantalla de login con navigation
+        onClick = {
+            //viewModel.signOutAccount().also {
+            //navController.navigate(AppScreens.SelectionScreen.name)}
+        }, //funcion para cerrar sesion y volver a la pantalla de login con navigation
         content = {
             Text(
                 "Cerrar Sesión",

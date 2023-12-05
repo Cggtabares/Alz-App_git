@@ -73,7 +73,10 @@ fun CareGiverHomeScreen() {
                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
                 ) {
                     Row {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = {
+                            //navController.navigate(AppScreens.ProfilePatientsScreen.name)
+                            //esta funcion debe llevar a la pantalla de perfil del paciente
+                        }) {
                             Icon(
                                 imageVector = Icons.Filled.AccountCircle,
                                 contentDescription = "Account", Modifier.size(200.dp),
@@ -341,7 +344,9 @@ fun TopAppBar() {
                 }*/
                 Text("Lista de Pacientes")
                 Spacer(modifier = Modifier.size(80.dp))
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {
+                    //navController.navigate(AppScreens.ProfileCareGiversScreen.name)
+                }) {
                     Icon(
                         imageVector = Icons.Filled.AccountCircle,
                         contentDescription = "Account", Modifier.fillMaxSize()//.size(100.dp),

@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
                     //CareGiverHomeScreen()
                     //PacientProfileSelectedScreen()
                     //CaregiverProfileScreen()
-                    NotificationScreen()
+                    //NotificationScreen()
                 }
             }
         }

@@ -356,7 +356,14 @@ fun CreateAccountButton(isCreateEnable: Boolean,
 {
     Button(
         shape = RoundedCornerShape(10.dp),
-        onClick = onClic,
+        onClick = onClic
+            //.also{
+                /*if(user.type == "Paciente")
+                    navController.navigate(AppScreens.ProfilePatientsScreen.name)
+                else
+                    navController.navigate(AppScreens.PatientListScreen.name)*/
+        //}
+        ,
         content = {
             Text(
                 "Crear cuenta",

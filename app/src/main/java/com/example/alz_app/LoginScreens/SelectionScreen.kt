@@ -62,13 +62,17 @@ fun LoginScreen() { //se debe agregar navController: NavHostController
                         .fillMaxWidth()
                 ) {
                     Button(
-                        shape = RoundedCornerShape(10.dp), onClick = { /*TODO*/ },
+                        shape = RoundedCornerShape(10.dp), onClick = {
+                                                    //navController.navigate(AppScreens.LoginScreen.name)
+                        },
                         modifier = Modifier.width(260.dp)
                     ) {
                         Text("Ingresar")
                     }
                     Button(
-                        shape = RoundedCornerShape(10.dp), onClick = { /*TODO*/ },
+                        shape = RoundedCornerShape(10.dp), onClick = {
+                            //navController.navigate(AppScreens.CreateAccountScreen.name)
+                        },
                         modifier = Modifier
                             .width(260.dp)
                             .padding(top = 32.dp)
