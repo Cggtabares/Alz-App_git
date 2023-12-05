@@ -103,11 +103,11 @@ class MainViewModel : ViewModel() {
 
     fun validatePassword(password: String): Boolean {
 
-        val showErrorMessage =
-            "Se requiere al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial"
-        val regex = Regex("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&.])[A-Za-z\\d@$!%*#?&.]{8,}$")
+        val ErrorPasswordMessage = "Se requiere al menos 6 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial"
+        val regex = Regex("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=])(?=\\\\S+\$).{6,}\$")
         if (!regex.matches(password)) {
-            Log.d("Login", "validatePassword: $showErrorMessage")
+            Log.d("Login", "validatePassword: $ErrorPasswordMessage")
+
 
         }
         return regex.matches(password)

@@ -1,10 +1,9 @@
 package com.example.alz_app.LoginScreens
 
 
-import androidx.compose.foundation.Image
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -38,8 +37,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -48,7 +46,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.alz_app.R
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
@@ -70,6 +67,7 @@ fun CreateAccountScreen(MainViewModel: MainViewModel ) {
     var location by rememberSaveable { mutableStateOf("") }
 
     val isCreateEnable:Boolean by MainViewModel.isCreateEnable.observeAsState(initial = false)
+    val context = LocalContext.current
 
 
    Scaffold(
@@ -101,12 +99,17 @@ fun CreateAccountScreen(MainViewModel: MainViewModel ) {
                 FieldCreatePassword(password = password, onTextChanged = { MainViewModel.onCreateAccountChange(email = email, password = it, name = name, lastname = lastname, phone = phone, type = type) })
 
             }
+            item{
+                FieldCreatePassword()
+            }
+
             item {
                 FieldCreatePhone(phone = phone, onTextChanged = { MainViewModel.onCreateAccountChange(email = email, password = password, name = name, lastname = lastname, phone = it, type = type) })
 
             }
             item {
                 FieldCreateTypeDropdownMenu(type = type, onUpdateType = { newType -> MainViewModel.onUpdateType(newType) })
+
             }
             item{
                 AcquireLocationButton()
@@ -114,9 +117,7 @@ fun CreateAccountScreen(MainViewModel: MainViewModel ) {
             item {
                 FieldCreateGoogleMap(location = location)
             }
-
             item {
-
                 CreateAccountButton(isCreateEnable = isCreateEnable, onClic = {MainViewModel.createUser(email = email, password = password)})
             }
         }
@@ -347,6 +348,17 @@ fun FieldCreateGoogleMap(location: String) {
         }
     }
 }
+
+@Composable
+fun FieldCreatePassword() {
+    Text(
+        text = "Se requiere al menos 6 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial",
+        textAlign = TextAlign.Start,
+        modifier = Modifier.padding(16.dp),
+        maxLines = 3,
+    )
+}
+
 
 
 @Composable

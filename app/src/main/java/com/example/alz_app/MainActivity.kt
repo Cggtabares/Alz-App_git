@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     //PacientProfileScreen()
-                    //CreateAccountScreen(MainViewModel())
+                    CreateAccountScreen(MainViewModel())
                     //LoginScreen()
                     //IngresarScreen()
                     //PacientProfileScreen()
