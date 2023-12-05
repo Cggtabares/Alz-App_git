@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -26,13 +25,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.alz_app.LoginScreens.CreateAccountButton
-import com.example.alz_app.LoginScreens.FieldCreateEmail
-import com.example.alz_app.LoginScreens.FieldCreateGoogleMap
-import com.example.alz_app.LoginScreens.FieldCreateLastName
-import com.example.alz_app.LoginScreens.FieldCreatePassword
-import com.example.alz_app.LoginScreens.FieldCreatePhone
-import com.example.alz_app.LoginScreens.FieldCreateTypeDropdownMenu
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
@@ -113,7 +105,7 @@ fun NameField(){
     Box(modifier = Modifier
         .fillMaxWidth()
         .padding(top = 16.dp, start = 8.dp)){
-        Text(text = "Nombre Paciente:  NOMBRE", fontSize = 20.sp)
+        Text(text = "Nombre Paciente:  Jane", fontSize = 20.sp)
     }
 }
 
@@ -122,7 +114,7 @@ fun LastNameField(){
     Box(modifier = Modifier
         .fillMaxWidth()
         .padding(top = 8.dp, start = 8.dp)){
-        Text(text = "Apellido Paciente:  APELLIDO", fontSize = 20.sp)
+        Text(text = "Apellido Paciente:  Doe", fontSize = 20.sp)
     }
 }
 
@@ -131,7 +123,7 @@ fun EmailField(){
     Box(modifier = Modifier
         .fillMaxWidth()
         .padding(top = 8.dp, start = 8.dp)){
-        Text(text = "Correo Paciente:  CORREO@CORREO.COM", fontSize = 20.sp)
+        Text(text = "Correo Paciente:  JaneDoe@CORREO.COM", fontSize = 20.sp)
     }
 }
 
@@ -140,7 +132,7 @@ fun PhoneField(){
     Box(modifier = Modifier
         .fillMaxWidth()
         .padding(top = 8.dp, start = 8.dp)){
-        Text(text = "Telefono Paciente:  TELEFONO", fontSize = 20.sp)
+        Text(text = "Telefono Paciente:  04145555555", fontSize = 20.sp)
     }
 }
 
@@ -149,13 +141,13 @@ fun CuidadorField(){
     Box(modifier = Modifier
         .fillMaxWidth()
         .padding(top = 8.dp, start = 8.dp)){
-        Text(text = "Cuidador Paciente:  NOMBRE CUIDADOR", fontSize = 20.sp)
+        Text(text = "Cuidador Paciente:  Joe Doe", fontSize = 20.sp)
     }
 }
 
 @Composable
 fun MapField(){
-    val location = com.google.android.gms.maps.model.LatLng(1.35, 103.87)
+    val location = com.google.android.gms.maps.model.LatLng(10.50, -66.94)
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(location, 10f)
     }

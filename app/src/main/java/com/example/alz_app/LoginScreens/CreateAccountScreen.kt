@@ -329,7 +329,7 @@ fun AcquireLocationButton(){ //, onClic: () -> Unit
 
 @Composable
 fun FieldCreateGoogleMap(location: String) {
-    val location = com.google.android.gms.maps.model.LatLng(1.35, 103.87)
+    val location = com.google.android.gms.maps.model.LatLng(10.46855, -66.9727669)
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(location, 10f)
     }

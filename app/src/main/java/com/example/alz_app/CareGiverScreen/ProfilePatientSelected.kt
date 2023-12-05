@@ -1,4 +1,4 @@
-package com.example.alz_app.Profile
+package com.example.alz_app.LoginScreens.ProfilePatientSelected
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -26,13 +25,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.alz_app.LoginScreens.CreateAccountButton
-import com.example.alz_app.LoginScreens.FieldCreateEmail
-import com.example.alz_app.LoginScreens.FieldCreateGoogleMap
-import com.example.alz_app.LoginScreens.FieldCreateLastName
-import com.example.alz_app.LoginScreens.FieldCreatePassword
-import com.example.alz_app.LoginScreens.FieldCreatePhone
-import com.example.alz_app.LoginScreens.FieldCreateTypeDropdownMenu
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
@@ -41,7 +33,7 @@ import com.google.maps.android.compose.rememberCameraPositionState
 
 
 @Composable
-fun CaregiverProfileScreen() {
+fun PacientProfileSelectedScreen() {
 
     Scaffold(
         topBar = { MyTopAppBarProfile() },
@@ -69,10 +61,10 @@ fun CaregiverProfileScreen() {
                 PhoneField()
             }
             item {
-                MapField()
+                CuidadorField()
             }
             item {
-                SignOutButton()
+                MapField()
             }
         }
     }
@@ -84,7 +76,7 @@ fun MyTopAppBarProfile() {
     TopAppBar(
         title = {
             Text(
-                text = "Perfil Cuidador",
+                text = "Perfil Paciente",
                 textAlign = TextAlign.Justify,
                 modifier = Modifier.padding(16.dp)
             )
@@ -110,7 +102,7 @@ fun NameField(){
     Box(modifier = Modifier
         .fillMaxWidth()
         .padding(top = 16.dp, start = 8.dp)){
-        Text(text = "Nombre Paciente:  Joe", fontSize = 20.sp)
+        Text(text = "Nombre Paciente:  Jane", fontSize = 20.sp)
     }
 }
 
@@ -128,7 +120,7 @@ fun EmailField(){
     Box(modifier = Modifier
         .fillMaxWidth()
         .padding(top = 8.dp, start = 8.dp)){
-        Text(text = "Correo Paciente:  JoeDoe@CORREO.COM", fontSize = 20.sp)
+        Text(text = "Correo Paciente:  JaneDoe@CORREO.COM", fontSize = 20.sp)
     }
 }
 
@@ -137,15 +129,22 @@ fun PhoneField(){
     Box(modifier = Modifier
         .fillMaxWidth()
         .padding(top = 8.dp, start = 8.dp)){
-        Text(text = "Telefono Paciente:  04145555554", fontSize = 20.sp)
+        Text(text = "Telefono Paciente:  04145555555", fontSize = 20.sp)
     }
 }
 
-
+@Composable
+fun CuidadorField(){
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .padding(top = 8.dp, start = 8.dp)){
+        Text(text = "Cuidador Paciente:  Joe Doe", fontSize = 20.sp)
+    }
+}
 
 @Composable
-fun MapField(){ //Markers de los pacientes
-    val location = com.google.android.gms.maps.model.LatLng(10.50, -66.94)
+fun MapField(){
+    val location = com.google.android.gms.maps.model.LatLng(10.46855, -66.9727669)
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(location, 10f)
     }
@@ -164,29 +163,8 @@ fun MapField(){ //Markers de los pacientes
     }
 }
 
-@Composable
-fun SignOutButton()
-{
-    Button(
-        shape = RoundedCornerShape(10.dp),
-        onClick = { }, //funcion para cerrar sesion y volver a la pantalla de login con navigation
-        content = {
-            Text(
-                "Cerrar Sesión",
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Bold,
-            )
-        },
-        enabled = true,
-        modifier = Modifier
-            //.padding(top = 32.dp)
-            .fillMaxWidth()
-            .height(60.dp),
-    )
-}
-
 @Preview
 @Composable
 fun PreviewProfileScreen() {
-    CaregiverProfileScreen()
+    PacientProfileSelectedScreen()
 }
