@@ -4,8 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.alz_app.LoginScreens.CreateAccountScreen
 import com.example.alz_app.LoginScreens.IngresarScreen
 import com.example.alz_app.LoginScreens.LoginScreen
+import com.example.alz_app.LoginScreens.MainViewModel
 
 
 @Composable
@@ -15,13 +17,13 @@ fun AppNavigation(){
         startDestination = AppScreens.SelectionScreen.name
     ) {
         composable(AppScreens.SelectionScreen.name) {
-            //LoginScreen(navController = navController)
+            LoginScreen(navController = navController, MainViewModel())
         }
         composable(AppScreens.LoginScreen.name) {
-            //IngresarScreen(navController = navController)
+            IngresarScreen(navController = navController, MainViewModel())
         }
         composable(AppScreens.CreateAccountScreen.name) {
-            //CreateAccountScreen(navController = navController)
+            CreateAccountScreen(navController = navController, MainViewModel = MainViewModel())
         }
         //if (user.type == "Paciente") {
         composable(AppScreens.ProfilePatientsScreen.name) {

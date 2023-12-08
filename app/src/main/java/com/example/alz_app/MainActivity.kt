@@ -17,6 +17,7 @@ import com.example.alz_app.LoginScreens.LoginScreen
 import com.example.alz_app.LoginScreens.MainViewModel
 import com.example.alz_app.LoginScreens.ProfilePatient.PacientProfileScreen
 import com.example.alz_app.LoginScreens.ProfilePatientSelected.PacientProfileSelectedScreen
+import com.example.alz_app.Navigation.AppNavigation
 import com.example.alz_app.Profile.CaregiverProfileScreen
 import com.example.alz_app.ui.theme.AlzAppTheme
 
@@ -31,7 +32,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     //PacientProfileScreen()
-                    CreateAccountScreen(MainViewModel())
+                    //CreateAccountScreen(MainViewModel())
                     //LoginScreen()
                     //IngresarScreen()
                     //PacientProfileScreen()
@@ -39,6 +40,7 @@ class MainActivity : ComponentActivity() {
                     //PacientProfileSelectedScreen()
                     //CaregiverProfileScreen()
                     //NotificationScreen()
+                    AppNavigation()
                 }
             }
         }

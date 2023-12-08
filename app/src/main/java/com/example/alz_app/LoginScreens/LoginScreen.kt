@@ -42,14 +42,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.alz_app.Navigation.AppScreens
 import com.example.alz_app.R
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun IngresarScreen() {
+fun IngresarScreen(navController: NavController, viewModel: MainViewModel) {
     Scaffold(
-        topBar = { MyTopAppBar() },
+        topBar = { MyTopAppBar(navController) },
     ) { innerPadding ->
         Box(
             modifier = Modifier
@@ -67,7 +69,7 @@ fun IngresarScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyTopAppBar() {
+fun MyTopAppBar(navController: NavController) {
     TopAppBar(
         title = {
             Text(
@@ -82,7 +84,7 @@ fun MyTopAppBar() {
         //actionIconContentColor = Color.White//),
         navigationIcon = {
             IconButton(onClick = {
-                //navController.navigate(AppScreens.SelectionScreen.name
+                navController.navigate(AppScreens.SelectionScreen.name)
             }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
@@ -207,7 +209,7 @@ fun Password(password: String, onTextChanged: (String) -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun IngresarScreenPreview() {
-    IngresarScreen()
+    //IngresarScreen()
 }
 
 

@@ -22,13 +22,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import com.example.alz_app.Navigation.AppScreens
 import com.example.alz_app.R
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen() { //se debe agregar navController: NavHostController
+fun LoginScreen(navController: NavController, viewModel: MainViewModel) { //se debe agregar navController: NavHostController
 
         Scaffold(
             //topBar = { TopAppBar(title = { Text("") }) },
@@ -63,7 +65,7 @@ fun LoginScreen() { //se debe agregar navController: NavHostController
                 ) {
                     Button(
                         shape = RoundedCornerShape(10.dp), onClick = {
-                                                    //navController.navigate(AppScreens.LoginScreen.name)
+                                                    navController.navigate(AppScreens.LoginScreen.name)
                         },
                         modifier = Modifier.width(260.dp)
                     ) {
@@ -71,7 +73,7 @@ fun LoginScreen() { //se debe agregar navController: NavHostController
                     }
                     Button(
                         shape = RoundedCornerShape(10.dp), onClick = {
-                            //navController.navigate(AppScreens.CreateAccountScreen.name)
+                            navController.navigate(AppScreens.CreateAccountScreen.name)
                         },
                         modifier = Modifier
                             .width(260.dp)
@@ -88,5 +90,5 @@ fun LoginScreen() { //se debe agregar navController: NavHostController
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen() //se debe agregar navController
+   // LoginScreen() //se debe agregar navController
 }

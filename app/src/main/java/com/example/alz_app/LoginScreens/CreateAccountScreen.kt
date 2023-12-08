@@ -1,14 +1,17 @@
 package com.example.alz_app.LoginScreens
 
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ColumnScopeInstance.weight
+import androidx.compose.foundation.layout.RowScopeInstance.weight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -46,6 +49,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.example.alz_app.Navigation.AppScreens
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
@@ -55,81 +60,151 @@ import com.google.maps.android.compose.rememberCameraPositionState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CreateAccountScreen(MainViewModel: MainViewModel ) {
+fun CreateAccountScreen(MainViewModel: MainViewModel, navController: NavController) {
     val name: String by MainViewModel.name.observeAsState(initial = "")
     val lastname: String by MainViewModel.lastname.observeAsState(initial = "")
 
-    val email : String by MainViewModel.email.observeAsState(initial ="")
-    val password : String by MainViewModel.password.observeAsState(initial ="")
+    val email: String by MainViewModel.email.observeAsState(initial = "")
+    val password: String by MainViewModel.password.observeAsState(initial = "")
 
     val phone: String by MainViewModel.phone.observeAsState(initial = "")
     val type: String by MainViewModel.type.observeAsState(initial = "")
     var location by rememberSaveable { mutableStateOf("") }
 
-    val isCreateEnable:Boolean by MainViewModel.isCreateEnable.observeAsState(initial = false)
+    val isCreateEnable: Boolean by MainViewModel.isCreateEnable.observeAsState(initial = false)
     val context = LocalContext.current
 
 
-   Scaffold(
-        topBar = { MyTopAppBarCreateAccount() },
-    ) { innerPadding ->
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
+    Scaffold(
+        topBar = { MyTopAppBarCreateAccount(navController) },
+
+        ) { innerPadding ->
+        Box(
             modifier = Modifier
-                .padding(innerPadding)
-                .padding(16.dp)
-                .fillMaxWidth()
-
+                .fillMaxSize()
+            //.verticalScroll(rememberScrollState())
         ) {
+            val scrollState = rememberLazyListState()
+            LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier
+                    .padding(innerPadding)
+                    //.padding(16.dp)
+                    .fillMaxWidth()
+                    .height(2500.dp),
+                state = scrollState
 
-            item {
-                FieldCreateName(name = name, onTextChanged = { MainViewModel.onCreateAccountChange(email = email, password = password, name = it, lastname = lastname, phone = phone, type = type) })
 
-            }
-            item {
-                FieldCreateLastName(lastname = lastname, onTextChanged = { MainViewModel.onCreateAccountChange(email = email, password = password, name = name, lastname = it, phone = phone, type = type) })
+            ) {
 
-            }
-            item {
-                FieldCreateEmail(email = email, onTextChanged = { MainViewModel.onCreateAccountChange(email = it, password = password, name = name, lastname = lastname, phone = phone, type = type)})
+                item {
+                    FieldCreateName(
+                        name = name,
+                        onTextChanged = {
+                            MainViewModel.onCreateAccountChange(
+                                email = email,
+                                password = password,
+                                name = it,
+                                lastname = lastname,
+                                phone = phone,
+                                type = type
+                            )
+                        })
 
-            }
-            item {
-                FieldCreatePassword(password = password, onTextChanged = { MainViewModel.onCreateAccountChange(email = email, password = it, name = name, lastname = lastname, phone = phone, type = type) })
+                }
+                item {
+                    FieldCreateLastName(
+                        lastname = lastname,
+                        onTextChanged = {
+                            MainViewModel.onCreateAccountChange(
+                                email = email,
+                                password = password,
+                                name = name,
+                                lastname = it,
+                                phone = phone,
+                                type = type
+                            )
+                        })
 
-            }
-            item{
-                FieldCreatePassword()
-            }
+                }
+                item {
+                    FieldCreateEmail(
+                        email = email,
+                        onTextChanged = {
+                            MainViewModel.onCreateAccountChange(
+                                email = it,
+                                password = password,
+                                name = name,
+                                lastname = lastname,
+                                phone = phone,
+                                type = type
+                            )
+                        })
 
-            item {
-                FieldCreatePhone(phone = phone, onTextChanged = { MainViewModel.onCreateAccountChange(email = email, password = password, name = name, lastname = lastname, phone = it, type = type) })
+                }
+                item {
+                    FieldCreatePassword(
+                        password = password,
+                        onTextChanged = {
+                            MainViewModel.onCreateAccountChange(
+                                email = email,
+                                password = it,
+                                name = name,
+                                lastname = lastname,
+                                phone = phone,
+                                type = type
+                            )
+                        })
 
-            }
-            item {
-                FieldCreateTypeDropdownMenu(type = type, onUpdateType = { newType -> MainViewModel.onUpdateType(newType) })
+                }
+                item {
+                    FieldCreatePassword()
+                }
 
-            }
-            item{
-                AcquireLocationButton()
-            }
-            item {
-                FieldCreateGoogleMap(location = location)
-            }
-            item {
-                CreateAccountButton(isCreateEnable = isCreateEnable, onClic = {MainViewModel.createUser(email = email, password = password)})
+                item {
+                    FieldCreatePhone(
+                        phone = phone,
+                        onTextChanged = {
+                            MainViewModel.onCreateAccountChange(
+                                email = email,
+                                password = password,
+                                name = name,
+                                lastname = lastname,
+                                phone = it,
+                                type = type
+                            )
+                        })
+
+                }
+                item {
+                    FieldCreateTypeDropdownMenu(
+                        type = type,
+                        onUpdateType = { newType -> MainViewModel.onUpdateType(newType) })
+
+                }
+                item {
+                    AcquireLocationButton()
+                }
+                item {
+                    FieldCreateGoogleMap(location = location)
+                }
+                item {
+                    CreateAccountButton(
+                        isCreateEnable = isCreateEnable,
+                        onClic = { MainViewModel.createUser(email = email, password = password) },
+                        navController
+                    )
+                }
             }
         }
     }
 }
 
 
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyTopAppBarCreateAccount() {
+fun MyTopAppBarCreateAccount(navController: NavController) {
     TopAppBar(
         title = {
             Text(
@@ -143,7 +218,9 @@ fun MyTopAppBarCreateAccount() {
         //navigationIconContentColor = Color.White,
         //actionIconContentColor = Color.White//),
         navigationIcon = {
-            IconButton(onClick = {}) {
+            IconButton(onClick = {
+                navController.navigate(AppScreens.SelectionScreen.name)
+            }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "Back",
@@ -254,7 +331,7 @@ fun FieldCreatePhone(phone: String, onTextChanged: (String) -> Unit) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FieldCreateTypeDropdownMenu(type: String, onUpdateType: (String) -> Unit){
+fun FieldCreateTypeDropdownMenu(type: String, onUpdateType: (String) -> Unit) {
 
     var isExpanded by rememberSaveable { mutableStateOf(false) }
     var typeUser by rememberSaveable { mutableStateOf("") }
@@ -310,7 +387,7 @@ fun FieldCreateTypeDropdownMenu(type: String, onUpdateType: (String) -> Unit){
 }
 
 @Composable
-fun AcquireLocationButton(){ //, onClic: () -> Unit
+fun AcquireLocationButton() { //, onClic: () -> Unit
     Button(
         shape = RoundedCornerShape(10.dp),
         onClick = {},  //onClic
@@ -334,17 +411,20 @@ fun FieldCreateGoogleMap(location: String) {
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(location, 10f)
     }
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .height(300.dp)){
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(300.dp)
+    ) {
         GoogleMap(
             modifier = Modifier,
             cameraPositionState = cameraPositionState,
             //properties = MapProperties(isMyLocationEnabled = true)
-        ){
+        ) {
             Marker(
                 state = MarkerState(position = location),
-                title = "Singapore")
+                title = "Singapore"
+            )
         }
     }
 }
@@ -360,22 +440,17 @@ fun FieldCreatePassword() {
 }
 
 
-
 @Composable
-fun CreateAccountButton(isCreateEnable: Boolean,
-                        onClic: () -> Unit,
-)
-{
+fun CreateAccountButton(
+    isCreateEnable: Boolean,
+    onClic: () -> Unit, navController: NavController
+) {
     Button(
         shape = RoundedCornerShape(10.dp),
         onClick = onClic
-            //.also{
-                /*if(user.type == "Paciente")
-                    navController.navigate(AppScreens.ProfilePatientsScreen.name)
-                else
-                    navController.navigate(AppScreens.PatientListScreen.name)*/
-        //}
-        ,
+            .also {
+                navController.navigate(AppScreens.PatientListScreen.name)
+            },
         content = {
             Text(
                 "Crear cuenta",
@@ -392,11 +467,10 @@ fun CreateAccountButton(isCreateEnable: Boolean,
 }
 
 
-
 @Preview(showBackground = true)
 @Composable
 fun CreateAccountScreenPreview() {
-    CreateAccountScreen(MainViewModel())
+    //CreateAccountScreen(MainViewModel())
 }
 
 
